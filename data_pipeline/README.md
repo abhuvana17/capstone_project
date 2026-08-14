@@ -143,3 +143,7 @@ Open data_pipeline_project.ipynb in Google Colab.
 Run all four cells from top to bottom.
 
 The notebook automatically scrapes, cleans, validates, creates the database, runs SQL queries, performs the JOIN comparison, and generates the output files.
+
+## Submission Verification
+
+The pipeline was executed successfully in Google Colab. It produced 174 books across 6 categories. The SQL JOIN and pandas merge outputs were verified to match.
