@@ -81,3 +81,7 @@ The notebook verifies that both outputs match.
 - books.db
 - sql_output.txt
 - join_comparison.txt
+
+
+## Pipeline Status
+Scraping, cleaning and validation completed.
