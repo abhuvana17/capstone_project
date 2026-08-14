@@ -1,7 +1,28 @@
 
 ================================================================================
-Q1 SELECT WHERE AND ORDER BY LIMIT
+QUERY 1
 ================================================================================
+
+SQL:
+
+
+SELECT
+    title,
+    price_gbp,
+    rating
+
+FROM books
+
+WHERE price_gbp < 20
+AND rating >= 4
+
+ORDER BY price_gbp ASC
+
+LIMIT 10;
+
+
+
+OUTPUT:
                                                                             title  price_gbp  rating
                                          Fruits Basket, Vol. 2 (Fruits Basket #2)      11.64       5
                     Superman Vol. 1: Before Truth (Superman by Gene Luen Yang #1)      11.89       5
@@ -14,15 +35,55 @@ Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus #1
                                                                    Sophie's World      15.94       5
                                 A Spy's Devotion (The Regency Spies of London #1)      16.97       5
 
+
 ================================================================================
-Q2 DISTINCT LIKE
+QUERY 2
 ================================================================================
+
+SQL:
+
+
+SELECT DISTINCT
+    category_name
+
+FROM categories
+
+WHERE category_name
+LIKE '%Fiction%';
+
+
+
+OUTPUT:
      category_name
 Historical Fiction
 
+
 ================================================================================
-Q3 BETWEEN IN
+QUERY 3
 ================================================================================
+
+SQL:
+
+
+SELECT
+    title,
+    price_gbp,
+    rating
+
+FROM books
+
+WHERE price_gbp
+BETWEEN 10 AND 30
+
+AND rating IN (4,5)
+
+ORDER BY
+    rating DESC,
+    price_gbp ASC;
+
+
+
+OUTPUT:
                                                                                                                                                                                                         title  price_gbp  rating
                                                                                                                                                                      Fruits Basket, Vol. 2 (Fruits Basket #2)      11.64       5
                                                                                                                                                 Superman Vol. 1: Before Truth (Superman by Gene Luen Yang #1)      11.89       5
@@ -55,9 +116,40 @@ At The Existentialist CafÃ©: Freedom, Being, and apricot cocktails with: Jean-
                                                                                                                                                                                Little Women (Little Women #1)      28.07       4
                                                                                                                                                                                     The Marriage of Opposites      28.08       4
 
+
 ================================================================================
-Q4 JOIN GROUP BY
+QUERY 4
 ================================================================================
+
+SQL:
+
+
+SELECT
+    c.category_name,
+
+    COUNT(b.book_id)
+        AS book_count,
+
+    ROUND(
+        AVG(b.price_gbp),
+        2
+    ) AS average_price_gbp
+
+FROM categories c
+
+JOIN books b
+ON c.category_id =
+   b.category_id
+
+GROUP BY
+    c.category_name
+
+ORDER BY
+    book_count DESC;
+
+
+
+OUTPUT:
      category_name  book_count  average_price_gbp
     Sequential Art          75              34.57
            Mystery          32              31.72
@@ -66,9 +158,38 @@ Historical Fiction          26              33.64
             Travel          11              39.79
         Philosophy          11              33.56
 
+
 ================================================================================
-Q5 HAVING
+QUERY 5
 ================================================================================
+
+SQL:
+
+
+SELECT
+    c.category_name,
+
+    COUNT(b.book_id)
+        AS book_count
+
+FROM categories c
+
+JOIN books b
+ON c.category_id =
+   b.category_id
+
+GROUP BY
+    c.category_name
+
+HAVING
+    COUNT(b.book_id) >= 5
+
+ORDER BY
+    book_count DESC;
+
+
+
+OUTPUT:
      category_name  book_count
     Sequential Art          75
            Mystery          32
@@ -77,53 +198,151 @@ Historical Fiction          26
             Travel          11
         Philosophy          11
 
-================================================================================
-Q6 JOIN
-================================================================================
- book_id                                                                         title      category_name  price_gbp  rating  in_stock  price_inr
-     163                     Alice in Wonderland (Alice's Adventures in Wonderland #1)           Classics      55.53       1         1    5858.42
-     157                                                      And Then There Were None           Classics      35.01       2         1    3693.56
-     152                                                                   Animal Farm           Classics      57.22       3         1    6036.71
-     156                                                                       Beowulf           Classics      38.35       2         1    4045.92
-     151                                                                       Candide           Classics      58.63       3         1    6185.46
-     162                                                                          Emma           Classics      32.93       2         1    3474.12
-     150                                                            Gone with the Wind           Classics      32.49       3         1    3427.70
-     149                                                Little Women (Little Women #1)           Classics      28.07       4         1    2961.38
-     161                                                               Of Mice and Men           Classics      47.11       2         1    4970.10
-     160                                                         Sense and Sensibility           Classics      37.46       1         1    3952.03
-     155 The Complete Stories and Poems (The Works of Edgar Allan Poe [Cameo Edition])           Classics      26.78       4         1    2825.29
-     148                            The Hound of the Baskervilles (Sherlock Holmes #5)           Classics      14.82       2         1    1563.51
-     159                                                             The Little Prince           Classics      45.42       2         1    4791.81
-     146                                                             The Metamorphosis           Classics      28.58       1         1    3015.19
-     154                                                    The Picture of Dorian Gray           Classics      29.70       2         1    3133.35
-     147                                                        The Pilgrim's Progress           Classics      50.26       2         1    5302.43
-     145                                                             The Secret Garden           Classics      15.08       4         1    1590.94
-     158                                                     The Story of Hong Gildong           Classics      43.19       4         1    4556.54
-     153                                                             Wuthering Heights           Classics      17.73       3         1    1870.52
-      46                                       A Flight of Arrows (The Pathfinders #2) Historical Fiction      55.53       5         1    5858.42
 
 ================================================================================
-Q7 AGGREGATES
+QUERY 6
 ================================================================================
+
+SQL:
+
+
+SELECT
+
+    b.book_id,
+    b.title,
+    c.category_name,
+    b.price_gbp,
+    b.rating,
+    b.in_stock,
+    b.price_inr
+
+FROM books b
+
+JOIN categories c
+ON b.category_id =
+   c.category_id
+
+ORDER BY
+    b.book_id
+
+LIMIT 20;
+
+
+
+OUTPUT:
+ book_id                                                                                             title category_name  price_gbp  rating  in_stock  price_inr
+       1                                                                           It's Only the Himalayas        Travel      45.17       2         1    4765.44
+       2                                Full Moon over Noahâs Ark: An Odyssey to Mount Ararat and Beyond        Travel      49.43       4         1    5214.86
+       3                                See America: A Celebration of Our National Parks & Treasured Sites        Travel      48.87       3         1    5155.78
+       4                               Vagabonding: An Uncommon Guide to the Art of Long-Term World Travel        Travel      36.94       2         1    3897.17
+       5                                                                              Under the Tuscan Sun        Travel      37.33       3         1    3938.31
+       6                                                                                A Summer In Europe        Travel      44.34       2         1    4677.87
+       7                                                                          The Great Railway Bazaar        Travel      30.54       1         1    3221.97
+       8                                                                  A Year in Provence (Provence #1)        Travel      56.88       4         1    6000.84
+       9 The Road to Little Dribbling: Adventures of an American in Britain (Notes From a Small Island #2)        Travel      23.21       1         1    2448.66
+      10                                                         Neither Here nor There: Travels in Europe        Travel      38.95       3         1    4109.23
+      11                                                                1,000 Places to See Before You Die        Travel      26.08       5         1    2751.44
+      12                                                                                     Sharp Objects       Mystery      47.82       4         1    5045.01
+      13                                                                              In a Dark, Dark Wood       Mystery      19.63       1         1    2070.96
+      14                                                                               The Past Never Ends       Mystery      56.50       4         1    5960.75
+      15                                                                                  A Murder in Time       Mystery      16.64       1         1    1755.52
+      16                                                   The Murder of Roger Ackroyd (Hercule Poirot #4)       Mystery      44.10       4         1    4652.55
+      17                                                                    The Last Mile (Amos Decker #2)       Mystery      54.21       2         1    5719.16
+      18                                                            That Darkness (Gardiner and Renner #1)       Mystery      13.92       1         1    1468.56
+      19                                                              Tastes Like Fear (DI Marnie Rome #3)       Mystery      10.69       1         1    1127.79
+      20                                                            A Time of Torment (Charlie Parker #14)       Mystery      48.35       5         1    5100.92
+
+
+================================================================================
+QUERY 7
+================================================================================
+
+SQL:
+
+
+SELECT
+
+    COUNT(*) AS total_books,
+
+    ROUND(
+        MIN(price_gbp), 2
+    ) AS minimum_price_gbp,
+
+    ROUND(
+        MAX(price_gbp), 2
+    ) AS maximum_price_gbp,
+
+    ROUND(
+        AVG(price_gbp), 2
+    ) AS average_price_gbp,
+
+    SUM(
+        CASE
+            WHEN in_stock = 1
+            THEN 1
+            ELSE 0
+        END
+    ) AS books_in_stock
+
+FROM books;
+
+
+
+OUTPUT:
  total_books  minimum_price_gbp  maximum_price_gbp  average_price_gbp  books_in_stock
          174              10.16              59.48              34.39             174
 
+
 ================================================================================
-Q8 CASE
+QUERY 8
 ================================================================================
-                                                                                                                                                                                                        title  rating rating_label
-                                                                                                                                                                           1,000 Places to See Before You Die       5    Excellent
-                                                                                                                                                                      A Flight of Arrows (The Pathfinders #2)       5    Excellent
-                                                                                                                                                            A Spy's Devotion (The Regency Spies of London #1)       5    Excellent
-                                                                                                                                                                       A Time of Torment (Charlie Parker #14)       5    Excellent
-At The Existentialist CafÃ©: Freedom, Being, and apricot cocktails with: Jean-Paul Sartre, Simone de Beauvoir, Albert Camus, Martin Heidegger, Edmund Husserl, Karl Jaspers, Maurice Merleau-Ponty and others       5    Excellent
-                                                                                                                                                                     Batman: The Dark Knight Returns (Batman)       5    Excellent
-                                                                                                                                                                                       Between Shades of Gray       5    Excellent
-                                                                                                                                                  Bleach, Vol. 1: Strawberry and the Soul Reapers (Bleach #1)       5    Excellent
-                                                                                                                                                                                                     El Deafo       5    Excellent
-                                                                                                                                                                     Fruits Basket, Vol. 1 (Fruits Basket #1)       5    Excellent
-                                                                                                                                                                     Fruits Basket, Vol. 2 (Fruits Basket #2)       5    Excellent
-                                                                                                                                                                                                 Mrs. Houdini       5    Excellent
-                                                                                                                            Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus #1)       5    Excellent
-                                                                                                                                    Rat Queens, Vol. 1: Sass & Sorcery (Rat Queens (Collected Editions) #1-5)       5    Excellent
-                                                                                                                                                                                                  Roller Girl       5    Excellent
+
+SQL:
+
+
+SELECT
+
+    title,
+    rating,
+
+    CASE
+
+        WHEN rating = 5
+            THEN 'Excellent'
+
+        WHEN rating = 4
+            THEN 'Very Good'
+
+        WHEN rating = 3
+            THEN 'Good'
+
+        ELSE 'Below Average'
+
+    END AS rating_label
+
+FROM books
+
+ORDER BY rating DESC
+
+LIMIT 15;
+
+
+
+OUTPUT:
+                                                                   title  rating rating_label
+                                      1,000 Places to See Before You Die       5    Excellent
+                                  A Time of Torment (Charlie Parker #14)       5    Excellent
+       What Happened on Beale Street (Secrets of the South Mysteries #2)       5    Excellent
+The Bachelor Girl's Guide to Murder (Herringford and Watts Mysteries #1)       5    Excellent
+                                       The Silkworm (Cormoran Strike #2)       5    Excellent
+                                                       The Girl You Lost       5    Excellent
+                                 A Flight of Arrows (The Pathfinders #2)       5    Excellent
+                                                            Mrs. Houdini       5    Excellent
+                                                   The Passion of Dolssa       5    Excellent
+                                                  Voyager (Outlander #3)       5    Excellent
+                                                            The Red Tent       5    Excellent
+                                                  Between Shades of Gray       5    Excellent
+                                                     While You Were Mine       5    Excellent
+                       A Spy's Devotion (The Regency Spies of London #1)       5    Excellent
+                 Scott Pilgrim's Precious Little Life (Scott Pilgrim #1)       5    Excellent
+

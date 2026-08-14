@@ -1,23 +1,26 @@
-
-# Data Pipeline Project
+# Data Pipeline Module
 
 ## Overview
 
-This project automatically scrapes book data from Books to Scrape,
-cleans the data using pandas, calculates INR prices, stores the data
-in SQLite, and performs SQL analysis.
+This module implements an end-to-end book data pipeline.
 
-## Fixed GBP to INR Rate
+The pipeline performs:
 
-1 GBP = 105.50 INR
+1. Web scraping
+2. Data cleaning
+3. Data validation
+4. Currency conversion
+5. SQLite database loading
+6. SQL analysis
+7. Pandas JOIN comparison
 
-This is a fixed project-defined conversion rate and is not based on
-a date-specific exchange rate.
+## Source
+
+Books are scraped from Books to Scrape.
 
 ## Dataset
 
-The pipeline automatically collects at least 60 books from at least
-3 categories.
+The pipeline produces at least 60 book rows across at least 3 categories.
 
 ## Columns
 
@@ -28,60 +31,115 @@ The pipeline automatically collects at least 60 books from at least
 - in_stock
 - price_inr
 
+## Data Types
+
+- price_gbp: float
+- rating: integer from 1 to 5
+- in_stock: boolean
+- price_inr: float
+
+## Currency Conversion
+
+The project uses the following fixed project-defined rate:
+
+**1 GBP = 105.50 INR**
+
+This is a fixed rate with no date reference.
+
+price_inr is calculated as:
+
+price_inr = price_gbp * 105.50
+
 ## Cleaning Decisions
 
-1. Removed the pound symbol from prices.
-2. Converted prices to float.
-3. Converted ratings One-Five to integers 1-5.
-4. Converted stock status to Boolean.
-5. Removed duplicate title/category combinations.
-6. Removed invalid or missing prices and ratings.
-7. Calculated price_inr using 105.50.
+- Removed pound/currency symbols from prices.
+- Converted prices to float.
+- Converted rating words One-Five to integers 1-5.
+- Converted stock status to Boolean.
+- Removed duplicate title/category combinations.
+- Removed rows with missing required values.
+- Removed invalid ratings.
+- Calculated price_inr using the fixed 105.50 rate.
 
-## Database
+## SQLite Database
 
-Two tables are used:
+The database file is books.db.
 
-categories:
-- category_id PRIMARY KEY
-- category_name
+Two tables are implemented:
 
-books:
-- book_id PRIMARY KEY
-- title
-- category_id FOREIGN KEY
+### categories
+
+- category_id: Primary Key
+- category_name: Unique and NOT NULL
+
+### books
+
+- book_id: Primary Key
+- title: NOT NULL
+- category_id: Foreign Key referencing categories(category_id)
 - price_gbp
 - rating
 - in_stock
 - price_inr
 
-## SQL
+SQLite foreign-key enforcement is enabled.
 
-The notebook demonstrates:
+## SQL Queries
 
-SELECT, WHERE, AND, DISTINCT, LIKE, BETWEEN, IN,
-ORDER BY, LIMIT, GROUP BY, HAVING, JOIN,
-aggregate functions and CASE.
+The project contains more than five SQL queries.
 
-## Pandas JOIN
+They cover:
 
-The same join is performed using:
+- SELECT
+- WHERE
+- AND
+- DISTINCT
+- LIKE
+- BETWEEN
+- IN
+- ORDER BY
+- LIMIT
+- GROUP BY
+- HAVING
+- JOIN
+- COUNT
+- AVG
+- MIN
+- MAX
+- SUM
+- CASE
 
-pd.read_sql()
+## JOIN Comparison
 
-and
+The JOIN is performed using both pd.read_sql() and pd.merge().
 
-pd.merge()
+The outputs are displayed side by side and programmatically compared.
 
-The notebook verifies that both outputs match.
+The expected result is:
 
-## Files Generated
+Same shape: True
 
-- books_cleaned.csv
-- books.db
-- sql_output.txt
-- join_comparison.txt
+Same values: True
 
+## Files
 
-## Pipeline Status
-Scraping, cleaning and validation completed.
+- data_pipeline_project.ipynb - Complete executable notebook
+- books_cleaned.csv - Cleaned dataset
+- books.db - SQLite database
+- sql_output.txt - SQL queries and outputs
+- join_comparison.txt - JOIN comparison
+- README.md - Documentation
+
+## Installation
+
+Install the following packages:
+
+pip install requests beautifulsoup4 pandas
+
+## Running
+
+Open data_pipeline_project.ipynb in Google Colab.
+
+Run all four cells from top to bottom.
+
+The notebook automatically scrapes, cleans, validates, creates the database, runs SQL queries, performs the JOIN comparison, and generates the output files.

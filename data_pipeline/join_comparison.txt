@@ -1,5 +1,5 @@
-=== pd.read_sql JOIN OUTPUT ===
-
+PD.READ_SQL JOIN OUTPUT
+================================================================================
  book_id                                                                                             title  category_id category_name  price_gbp  rating  in_stock  price_inr
        1                                                                           It's Only the Himalayas            6        Travel      45.17       2         1    4765.44
        2                                Full Moon over Noahâs Ark: An Odyssey to Mount Ararat and Beyond            6        Travel      49.43       4         1    5214.86
@@ -22,8 +22,8 @@
       19                                                              Tastes Like Fear (DI Marnie Rome #3)            3       Mystery      10.69       1         1    1127.79
       20                                                            A Time of Torment (Charlie Parker #14)            3       Mystery      48.35       5         1    5100.92
 
-=== pd.merge OUTPUT ===
-
+PD.MERGE OUTPUT
+================================================================================
  book_id                                                                                             title  category_id category_name  price_gbp  rating  in_stock  price_inr
        1                                                                           It's Only the Himalayas            6        Travel      45.17       2         1    4765.44
        2                                Full Moon over Noahâs Ark: An Odyssey to Mount Ararat and Beyond            6        Travel      49.43       4         1    5214.86
@@ -46,8 +46,8 @@
       19                                                              Tastes Like Fear (DI Marnie Rome #3)            3       Mystery      10.69       1         1    1127.79
       20                                                            A Time of Torment (Charlie Parker #14)            3       Mystery      48.35       5         1    5100.92
 
-=== SIDE BY SIDE ===
-
+SIDE-BY-SIDE OUTPUT
+================================================================================
  SQL_book_id                                                                                         SQL_title  SQL_category_id SQL_category_name  SQL_price_gbp  SQL_rating  SQL_in_stock  SQL_price_inr  PANDAS_book_id                                                                                      PANDAS_title  PANDAS_category_id PANDAS_category_name  PANDAS_price_gbp  PANDAS_rating  PANDAS_in_stock  PANDAS_price_inr
            1                                                                           It's Only the Himalayas                6            Travel          45.17           2             1        4765.44               1                                                                           It's Only the Himalayas                   6               Travel             45.17              2                1           4765.44
            2                                Full Moon over Noahâs Ark: An Odyssey to Mount Ararat and Beyond                6            Travel          49.43           4             1        5214.86               2                                Full Moon over Noahâs Ark: An Odyssey to Mount Ararat and Beyond                   6               Travel             49.43              4                1           5214.86
@@ -70,5 +70,7 @@
           19                                                              Tastes Like Fear (DI Marnie Rome #3)                3           Mystery          10.69           1             1        1127.79              19                                                              Tastes Like Fear (DI Marnie Rome #3)                   3              Mystery             10.69              1                1           1127.79
           20                                                            A Time of Torment (Charlie Parker #14)                3           Mystery          48.35           5             1        5100.92              20                                                            A Time of Torment (Charlie Parker #14)                   3              Mystery             48.35              5                1           5100.92
 
+MATCH RESULT
+================================================================================
 Same shape: True
 Same values: True
