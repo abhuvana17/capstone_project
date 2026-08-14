@@ -1,0 +1,129 @@
+
+================================================================================
+Q1 SELECT WHERE AND ORDER BY LIMIT
+================================================================================
+                                                                            title  price_gbp  rating
+                                         Fruits Basket, Vol. 2 (Fruits Basket #2)      11.64       5
+                    Superman Vol. 1: Before Truth (Superman by Gene Luen Yang #1)      11.89       5
+                                                                The Girl You Lost      12.29       5
+Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus #1)      13.61       5
+                                                                      Roller Girl      14.10       5
+                                                                The Secret Garden      15.08       4
+                                         Batman: The Dark Knight Returns (Batman)      15.38       5
+                           Outcast, Vol. 1: A Darkness Surrounds Him (Outcast #1)      15.44       4
+                                                                   Sophie's World      15.94       5
+                                A Spy's Devotion (The Regency Spies of London #1)      16.97       5
+
+================================================================================
+Q2 DISTINCT LIKE
+================================================================================
+     category_name
+Historical Fiction
+
+================================================================================
+Q3 BETWEEN IN
+================================================================================
+                                                                                                                                                                                                        title  price_gbp  rating
+                                                                                                                                                                     Fruits Basket, Vol. 2 (Fruits Basket #2)      11.64       5
+                                                                                                                                                Superman Vol. 1: Before Truth (Superman by Gene Luen Yang #1)      11.89       5
+                                                                                                                                                                                            The Girl You Lost      12.29       5
+                                                                                                                            Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus #1)      13.61       5
+                                                                                                                                                                                                  Roller Girl      14.10       5
+                                                                                                                                                                     Batman: The Dark Knight Returns (Batman)      15.38       5
+                                                                                                                                                                                               Sophie's World      15.94       5
+                                                                                                                                                            A Spy's Devotion (The Regency Spies of London #1)      16.97       5
+                                                                                                                                                                                       Between Shades of Gray      20.79       5
+                                                                                                                                                                                       Voyager (Outlander #3)      21.07       5
+                                                                                                                                                                Saga, Volume 3 (Saga (Collected Editions) #3)      21.57       5
+                                                                                                                                                                            The Silkworm (Cormoran Strike #2)      23.05       5
+                                                                                                                                            What Happened on Beale Street (Secrets of the South Mysteries #2)      25.37       5
+                                                                                                                                                                           1,000 Places to See Before You Die      26.08       5
+                                                                                                                                                                                        The Passion of Dolssa      28.32       5
+At The Existentialist CafÃ©: Freedom, Being, and apricot cocktails with: Jean-Paul Sartre, Simone de Beauvoir, Albert Camus, Martin Heidegger, Edmund Husserl, Karl Jaspers, Maurice Merleau-Ponty and others      29.93       5
+                                                                                                                                                                                            The Secret Garden      15.08       4
+                                                                                                                                                       Outcast, Vol. 1: A Darkness Surrounds Him (Outcast #1)      15.44       4
+                                                                                                                                                                                                Camp Midnight      17.08       4
+                                                                                                                                                                                                 The Stranger      17.44       4
+                                                                                                                                                       Y: The Last Man, Vol. 1: Unmanned (Y: The Last Man #1)      18.51       4
+                                                                                                                                                                                              This One Summer      19.49       4
+                                                                                                                                                             Delivering the Truth (Quaker Midwife Mystery #1)      20.89       4
+                                                                                                                                                                     Fruits Basket, Vol. 6 (Fruits Basket #6)      20.96       4
+                                                                                                                                                                       Paper Girls, Vol. 1 (Paper Girls #1-5)      21.71       4
+                                                                                                                                                          The Mysterious Affair at Styles (Hercule Poirot #1)      24.80       4
+                                                                                                                                The Complete Stories and Poems (The Works of Edgar Allan Poe [Cameo Edition])      26.78       4
+                                                                                                                                                                                        Lost Among the Living      27.70       4
+                                                                                                                                                                               Little Women (Little Women #1)      28.07       4
+                                                                                                                                                                                    The Marriage of Opposites      28.08       4
+
+================================================================================
+Q4 JOIN GROUP BY
+================================================================================
+     category_name  book_count  average_price_gbp
+    Sequential Art          75              34.57
+           Mystery          32              31.72
+Historical Fiction          26              33.64
+          Classics          19              36.55
+            Travel          11              39.79
+        Philosophy          11              33.56
+
+================================================================================
+Q5 HAVING
+================================================================================
+     category_name  book_count
+    Sequential Art          75
+           Mystery          32
+Historical Fiction          26
+          Classics          19
+            Travel          11
+        Philosophy          11
+
+================================================================================
+Q6 JOIN
+================================================================================
+ book_id                                                                         title      category_name  price_gbp  rating  in_stock  price_inr
+     163                     Alice in Wonderland (Alice's Adventures in Wonderland #1)           Classics      55.53       1         1    5858.42
+     157                                                      And Then There Were None           Classics      35.01       2         1    3693.56
+     152                                                                   Animal Farm           Classics      57.22       3         1    6036.71
+     156                                                                       Beowulf           Classics      38.35       2         1    4045.92
+     151                                                                       Candide           Classics      58.63       3         1    6185.46
+     162                                                                          Emma           Classics      32.93       2         1    3474.12
+     150                                                            Gone with the Wind           Classics      32.49       3         1    3427.70
+     149                                                Little Women (Little Women #1)           Classics      28.07       4         1    2961.38
+     161                                                               Of Mice and Men           Classics      47.11       2         1    4970.10
+     160                                                         Sense and Sensibility           Classics      37.46       1         1    3952.03
+     155 The Complete Stories and Poems (The Works of Edgar Allan Poe [Cameo Edition])           Classics      26.78       4         1    2825.29
+     148                            The Hound of the Baskervilles (Sherlock Holmes #5)           Classics      14.82       2         1    1563.51
+     159                                                             The Little Prince           Classics      45.42       2         1    4791.81
+     146                                                             The Metamorphosis           Classics      28.58       1         1    3015.19
+     154                                                    The Picture of Dorian Gray           Classics      29.70       2         1    3133.35
+     147                                                        The Pilgrim's Progress           Classics      50.26       2         1    5302.43
+     145                                                             The Secret Garden           Classics      15.08       4         1    1590.94
+     158                                                     The Story of Hong Gildong           Classics      43.19       4         1    4556.54
+     153                                                             Wuthering Heights           Classics      17.73       3         1    1870.52
+      46                                       A Flight of Arrows (The Pathfinders #2) Historical Fiction      55.53       5         1    5858.42
+
+================================================================================
+Q7 AGGREGATES
+================================================================================
+ total_books  minimum_price_gbp  maximum_price_gbp  average_price_gbp  books_in_stock
+         174              10.16              59.48              34.39             174
+
+================================================================================
+Q8 CASE
+================================================================================
+                                                                                                                                                                                                        title  rating rating_label
+                                                                                                                                                                           1,000 Places to See Before You Die       5    Excellent
+                                                                                                                                                                      A Flight of Arrows (The Pathfinders #2)       5    Excellent
+                                                                                                                                                            A Spy's Devotion (The Regency Spies of London #1)       5    Excellent
+                                                                                                                                                                       A Time of Torment (Charlie Parker #14)       5    Excellent
+At The Existentialist CafÃ©: Freedom, Being, and apricot cocktails with: Jean-Paul Sartre, Simone de Beauvoir, Albert Camus, Martin Heidegger, Edmund Husserl, Karl Jaspers, Maurice Merleau-Ponty and others       5    Excellent
+                                                                                                                                                                     Batman: The Dark Knight Returns (Batman)       5    Excellent
+                                                                                                                                                                                       Between Shades of Gray       5    Excellent
+                                                                                                                                                  Bleach, Vol. 1: Strawberry and the Soul Reapers (Bleach #1)       5    Excellent
+                                                                                                                                                                                                     El Deafo       5    Excellent
+                                                                                                                                                                     Fruits Basket, Vol. 1 (Fruits Basket #1)       5    Excellent
+                                                                                                                                                                     Fruits Basket, Vol. 2 (Fruits Basket #2)       5    Excellent
+                                                                                                                                                                                                 Mrs. Houdini       5    Excellent
+                                                                                                                            Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus #1)       5    Excellent
+                                                                                                                                    Rat Queens, Vol. 1: Sass & Sorcery (Rat Queens (Collected Editions) #1-5)       5    Excellent
+                                                                                                                                                                                                  Roller Girl       5    Excellent
