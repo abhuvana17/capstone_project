@@ -1,0 +1,21 @@
+DATA PIPELINE VERIFICATION
+
+Total books: 174
+Total categories: 6
+
+Fixed currency rate:
+1 GBP = 105.50 INR
+
+Required columns:
+price_gbp
+rating
+in_stock
+price_inr
+
+JOIN verification:
+pd.read_sql shape = (174, 8)
+pd.merge shape = (174, 8)
+Same shape = True
+Same values = True
+
+Pipeline validation: PASSED
